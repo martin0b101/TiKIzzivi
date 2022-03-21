@@ -140,6 +140,9 @@ class SeznamiUVTest {
         assertEquals("0", uv.processInput("search Test1"));
         assertEquals("OK", uv.processInput("push Test2"));
         assertEquals("1", uv.processInput("search Test1"));
+        assertEquals("OK", uv.processInput("push Test3"));
+        assertEquals("2", uv.processInput("search Test1"));
+        assertEquals("Test3", uv.processInput("pop"));
         assertEquals("Test2", uv.processInput("pop"));
         assertEquals("Test1", uv.processInput("pop"));
         assertEquals("-1", uv.processInput("search Test1"));
