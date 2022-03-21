@@ -2,7 +2,7 @@ import java.util.Stack;
 
 public class Sklad<Tip> {
     private Element<Tip> vrh;
-    private int sizeOfSkald = 0;
+    //private int sizeOfSkald = 0;
     class Element<Tip> {
         public Tip vrednost;
         public Element<Tip> vezava;
@@ -17,7 +17,7 @@ public class Sklad<Tip> {
         Element<Tip> novVrh = new Element<Tip>(e);
         novVrh.vezava = vrh;
         vrh = novVrh;
-        sizeOfSkald++; //dodam element
+        //sizeOfSkald++; //dodam element
     }
     public Tip pop()
     {
@@ -26,7 +26,7 @@ public class Sklad<Tip> {
         }
         Tip e = vrh.vrednost;
         vrh = vrh.vezava;
-        sizeOfSkald--;
+        //sizeOfSkald--;
         return e;
     }
 
@@ -42,6 +42,25 @@ public class Sklad<Tip> {
     }
 
     public int size(){
-        return sizeOfSkald;
+        int result = 0;
+        Element<Tip> temp = vrh;
+        while (null != temp) {
+            ++result;
+            temp = temp.vezava;
+        }
+        return result;
+    }
+
+    public int search(Tip e){
+        int r = 0;
+        Element<Tip> temp = vrh;
+        while (null != temp){
+            if (temp.vrednost.equals(e)){
+                return r;
+            }
+            temp = temp.vezava;
+            r++;
+        }
+        return -1;
     }
 }

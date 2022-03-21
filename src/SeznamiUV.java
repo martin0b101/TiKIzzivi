@@ -13,10 +13,22 @@ public class SeznamiUV {
         String result = "OK";
         switch (token){
             case  "push":
-                if (sc.hasNext())
-                    sklad.push(sc.next());
-                else
+                if (sc.hasNext()) {
+                    String multiWords = sc.next();
+                    if (multiWords.charAt(0) == '"'){
+                        multiWords = String.format("%s", multiWords);
+                        while (sc.hasNext()){
+                            multiWords = String.format("%s %s", multiWords, sc.next());
+                        }
+                        sklad.push(multiWords.substring(1, multiWords.length()-1));
+                    }
+                    else {
+                        sklad.push(multiWords);
+                    }
+                }
+                else {
                     result = "Error: please specify a string";
+                }
                 break;
             case "pop":
                 if (!sklad.isEmpty())
@@ -30,7 +42,32 @@ public class SeznamiUV {
                 }
                 break;
             case "count":
-                result = Integer.toString(sklad.size());
+                result = String.format("%d", sklad.size());
+                break;
+            case "isTop":
+                if (sc.hasNext()){
+                    if (sklad.top() == null){
+                        result = "Error: stack is empty";
+                        break;
+                    }
+                    else if (sklad.top().equals(sc.next())){
+                        break;
+                    }
+                    else {
+                        result = "Error: wrong element";
+                    }
+                }else {
+                    result = "Error: please specify a string";
+                }
+                break;
+            case "search":
+                if (sc.hasNext()){
+                    result = String.format("%d",sklad.search(sc.next()));
+                }
+                else {
+                    result = "Error: please specify a string";
+                }
+                break;
         }
         return result;
     }
