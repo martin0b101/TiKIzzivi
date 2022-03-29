@@ -1,6 +1,6 @@
 import java.util.Stack;
 
-public class Sklad<Tip> {
+public class Sklad<Tip extends Comparable> implements Seznam<Tip> {
     private Element<Tip> vrh;
     //private int sizeOfSkald = 0;
     class Element<Tip> {
@@ -41,6 +41,21 @@ public class Sklad<Tip> {
         return vrh.vrednost;
     }
 
+    @Override
+    public void add(Tip e) {
+        push(e);
+    }
+
+    @Override
+    public Tip removeFirst() {
+        return pop();
+    }
+
+    @Override
+    public Tip getFirst() {
+        return top();
+    }
+
     public int size(){
         int result = 0;
         Element<Tip> temp = vrh;
@@ -49,6 +64,11 @@ public class Sklad<Tip> {
             temp = temp.vezava;
         }
         return result;
+    }
+
+    @Override
+    public int depth() {
+        return size();
     }
 
     public int search(Tip e){
