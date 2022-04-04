@@ -9,4 +9,9 @@ public interface Seznam<Tip> {
     int size();
     int depth();
     boolean isEmpty();
+    //odstranjevaje in vracanje dolocenega elementa
+    Tip remove(Tip e);
+    //ali element obstaja v strukturi
+    boolean exist(Tip e);
+
 }
