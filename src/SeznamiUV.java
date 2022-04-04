@@ -1,13 +1,17 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class SeznamiUV {
 
-    private Sklad<String> sklad;
-    private PrioritetnaVrsta<String> vrsta;
+    HashMap<String, Seznam<String>> seznami;
+    Seznam<String> seznam;
+
 
     public SeznamiUV(){
-        sklad = new Sklad<String>();
-        vrsta = new PrioritetnaVrsta<String>();
+        seznami = new HashMap<>();
+        seznami.put("pv", new PrioritetnaVrsta<>());
+        seznami.put("sk", new Sklad<>());
+        seznami.put("bst", new BinarnoIskalnoDrevo<>());
     }
     public String processInput(String input){
         Scanner sc = new Scanner(input);

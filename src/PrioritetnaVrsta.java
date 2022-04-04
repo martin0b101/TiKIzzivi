@@ -108,4 +108,14 @@ public class PrioritetnaVrsta<Tip extends Comparable> implements Seznam<Tip> {
     public boolean isEmpty() {
         return end==0;
     }
+
+    @Override
+    public Tip remove(Tip e) {
+        return null;
+    }
+
+    @Override
+    public boolean exist(Tip e) {
+        return false;
+    }
 }

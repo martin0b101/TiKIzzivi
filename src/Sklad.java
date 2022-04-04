@@ -35,6 +35,16 @@ public class Sklad<Tip extends Comparable> implements Seznam<Tip> {
         return (null == vrh);
     }
 
+    @Override
+    public Tip remove(Tip e) {
+        return null;
+    }
+
+    @Override
+    public boolean exist(Tip e) {
+        return false;
+    }
+
     public Tip top(){
         if (this.vrh == null)
             return null;
