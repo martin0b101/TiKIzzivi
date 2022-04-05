@@ -13,109 +13,80 @@ public class SeznamiUV {
         seznami.put("sk", new Sklad<>());
         seznami.put("bst", new BinarnoIskalnoDrevo<>());
     }
-    public String processInput(String input){
+    public String processInput(String input) {
         Scanner sc = new Scanner(input);
         String token = sc.next();
         String result = "OK";
-        switch (token){
+        switch (token) {
+
+
+            case "use":
+                if (sc.hasNext()) {
+                    seznam = seznami.get(sc.next());
+                    if (null == seznam)
+                        result = "Error: please specify a correct data structure type (pv, sk, bst)";
+                } else result = "Error: please specify a data structure type (pv, sk, bst)";
+                break;
+
             //Stack
-            case  "s_add":
+            case "add":
                 if (sc.hasNext()) {
                     String multiWords = sc.next();
-                    if (multiWords.charAt(0) == '"'){
+                    if (multiWords.charAt(0) == '"') {
                         multiWords = String.format("%s", multiWords);
-                        while (sc.hasNext()){
+                        while (sc.hasNext()) {
                             multiWords = String.format("%s %s", multiWords, sc.next());
                         }
-                        sklad.add(multiWords.substring(1, multiWords.length()-1));
+                        seznam.add(multiWords.substring(1, multiWords.length() - 1));
+                    } else {
+                        seznam.add(multiWords);
                     }
-                    else {
-                        sklad.add(multiWords);
-                    }
-                }
-                else {
+                } else {
                     result = "Error: please specify a string";
                 }
                 break;
-            case "s_remove_first":
-                if (!sklad.isEmpty())
-                    result = sklad.removeFirst();
+            case "remove_first":
+                if (!seznam.isEmpty())
+                    result = seznam.removeFirst();
                 else
                     result = "Error: stack is empty";
                 break;
             case "reset":
-                while (!sklad.isEmpty()){
-                    sklad.removeFirst();
+                while (!seznam.isEmpty()) {
+                    seznam.removeFirst();
                 }
                 break;
-            case "s_size":
-                result = String.format("%d", sklad.depth());
+            case "size":
+                result = String.format("%d", seznam.depth());
                 break;
-            case "s_get_first":
-                if (sc.hasNext()){
-                    if (sklad.top() == null){
+            case "get_first":
+                if (sc.hasNext()) {
+                    if (seznam.getFirst() == null) {
                         result = "Error: stack is empty";
                         break;
-                    }
-                    else if (sklad.getFirst().equals(sc.next())){
+                    } else if (seznam.getFirst().equals(sc.next())) {
                         break;
-                    }
-                    else {
+                    } else {
                         result = "Error: wrong element";
                     }
-                }else {
+                } else {
                     result = "Error: please specify a string";
                 }
                 break;
-            case "s_isEmpty":
-                if (sklad.isEmpty())
+            case "isEmpty":
+                if (seznam.isEmpty())
                     result = "Stack is empty";
                 else
                     result = "Stack is not empty";
                 break;
             case "search":
-                if (sc.hasNext()){
-                    result = String.format("%d",sklad.search(sc.next()));
-                }
-                else {
+                if (sc.hasNext()) {
+                    result = String.format("%d", seznam.exist(sc.next()));
+                } else {
                     result = "Error: please specify a string";
                 }
-                break;
-
-            //Priority queue
-            case "pq_add":
-                if (sc.hasNext()){
-                    String val = sc.next();
-                    vrsta.add(val);
-                }
-                else
-                    result = "Error: please specify a string";
-                break;
-            case "pq_remove_first":
-                if (!vrsta.isEmpty())
-                    result = vrsta.removeFirst();
-                else
-                    result = "Error: priority queue is empty";
-                break;
-            case "pq_get_first":
-                if (!vrsta.isEmpty())
-                    result = vrsta.getFirst();
-                else
-                    result = "Error: priority queue is empty";
-                break;
-            case "pq_size":
-                result = String.format("%d", vrsta.size());
-                break;
-            case "pq_depth":
-                result = String.format("%d", vrsta.depth());
-                break;
-            case "pq_isEmpty":
-                if (vrsta.isEmpty())
-                    result = "Priority queue is empty";
-                else
-                    result = "Priority queue is not empty";
                 break;
         }
-        return result;
+        return token;
     }
 }

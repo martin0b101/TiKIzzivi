@@ -42,6 +42,9 @@ public class Sklad<Tip extends Comparable> implements Seznam<Tip> {
 
     @Override
     public boolean exist(Tip e) {
+        int elemntExist = search(e);
+        if (elemntExist > -1)
+            return true;
         return false;
     }
 
