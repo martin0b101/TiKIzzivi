@@ -49,7 +49,11 @@ public class SeznamiUV {
                 if (!seznam.isEmpty())
                     result = seznam.removeFirst();
                 else
-                    result = "Error: stack is empty";
+                    if (seznami.containsKey("pv")){
+                        result = "Error: priority queue is empty";
+                    }else {
+                        result = "Error: stack is empty";
+                    }
                 break;
             case "reset":
                 while (!seznam.isEmpty()) {
@@ -60,25 +64,34 @@ public class SeznamiUV {
                 result = String.format("%d", seznam.depth());
                 break;
             case "get_first":
-                if (sc.hasNext()) {
-                    if (seznam.getFirst() == null) {
+
+                if (seznam.getFirst() == null) {
+                    if (seznami.containsKey("pv")){
+                        result = "Error: priority queue is empty";
+                    }else {
                         result = "Error: stack is empty";
-                        break;
-                    } else if (seznam.getFirst().equals(sc.next())) {
-                        break;
-                    } else {
-                        result = "Error: wrong element";
                     }
-                } else {
-                    result = "Error: please specify a string";
+                    break;
+                } else{
+                    result = seznam.getFirst();
+                    break;
                 }
-                break;
+
             case "isEmpty":
                 if (seznam.isEmpty())
-                    result = "Stack is empty";
+                    if (seznami.containsKey("pv")){
+                        result = "Error: priority queue is empty";
+                    }else {
+                        result = "Error: stack is empty";
+                    }
                 else
-                    result = "Stack is not empty";
+                if (seznami.containsKey("pv")){
+                    result = "Error: priority queue is not empty";
+                }else {
+                    result = "Error: stack is not empty";
+                }
                 break;
+
             case "search":
                 if (sc.hasNext()) {
                     result = String.format("%d", seznam.exist(sc.next()));
@@ -86,7 +99,12 @@ public class SeznamiUV {
                     result = "Error: please specify a string";
                 }
                 break;
+
+            case "depth":
+                result = String.format("%d", seznam.depth());
+                break;
+
         }
-        return token;
+        return result;
     }
 }

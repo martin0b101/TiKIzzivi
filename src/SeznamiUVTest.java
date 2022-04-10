@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -8,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SeznamiUVTest {
 
-    SeznamiUV uv;
-
+    SeznamiUV uv = new SeznamiUV();
 
     @BeforeEach
     public void setUp(){
-       uv.processInput("use sk");
+        uv.processInput("use sk");
     }
+
 
     public SeznamiUVTest(){
     }
@@ -22,6 +23,7 @@ class SeznamiUVTest {
     @Test
     public void testPushBasic(){
         //SeznamiUV uv = new SeznamiUV();
+
         System.out.println("testPushBasic");
         assertEquals("OK", uv.processInput("add Test1"));
         assertEquals("OK", uv.processInput("add Test2"));
@@ -122,7 +124,7 @@ class SeznamiUVTest {
     public void testIsTop() {
         System.out.println("testIsTop");
         assertEquals("OK", uv.processInput("add Test1"));
-        assertEquals("OK", uv.processInput("get_first Test1"));
+        assertEquals("Test1", uv.processInput("get_first Test1"));
         assertEquals("OK", uv.processInput("add Test2"));
         assertEquals("Error: wrong element", uv.processInput("get_first Test1"));
         assertEquals("Error: please specify a string", uv.processInput("get_first"));
@@ -151,15 +153,22 @@ class SeznamiUVTest {
     }
 
 
+
+    public void setUpPV(){
+        uv.processInput("use pv");
+    }
+
     //Test for pq
     @Test
     public void testPqAdd(){
+        uv.processInput("use pv");
         System.out.println("testPqAdd");
         assertEquals("OK", uv.processInput("add Test1"));
     }
 
     @Test
     public void testPqRemoveFirst(){
+        uv.processInput("use pv");
         System.out.println("testPqRemoveFirst");
         assertEquals("OK", uv.processInput("add Test1"));
         assertEquals("Test1", uv.processInput("remove_first"));
@@ -167,12 +176,14 @@ class SeznamiUVTest {
 
     @Test
     public void testPqRemoveNothing(){
+        uv.processInput("use pv");
         System.out.println("testPqRemoveNothing");
         assertEquals("Error: priority queue is empty", uv.processInput("remove_first"));
     }
 
     @Test
     public void testPqGetFirst(){
+        uv.processInput("use pv");
         System.out.println("testPqGetFirst");
         assertEquals("OK", uv.processInput("add Test1"));
         assertEquals("Test1", uv.processInput("get_first"));
@@ -180,11 +191,13 @@ class SeznamiUVTest {
 
     @Test
     public void testPqGetFirstNothing(){
+        uv.processInput("use pv");
         System.out.println("testPqGetFirstNothing");
         assertEquals("Error: priority queue is empty", uv.processInput("get_first"));
     }
     @Test
     public void testPqSize(){
+        uv.processInput("use pv");
         System.out.println("testPqSize");
         assertEquals("0", uv.processInput("size"));
         assertEquals("OK", uv.processInput("add Test1"));
@@ -194,6 +207,7 @@ class SeznamiUVTest {
     }
     @Test
     public void testPqDepth(){
+        uv.processInput("use pv");
         System.out.println("testPqDepth");
         assertEquals("0", uv.processInput("depth"));
         assertEquals("OK", uv.processInput("add Test1"));
@@ -205,10 +219,11 @@ class SeznamiUVTest {
     }
     @Test
     public void testPqIsEmpty(){
+        uv.processInput("use pv");
         System.out.println("testPqIsEmpty");
-        assertEquals("Priority queue is empty", uv.processInput("isEmpty"));
+        assertEquals("Error: priority queue is empty", uv.processInput("isEmpty"));
         assertEquals("OK", uv.processInput("add Test1"));
-        assertEquals("Priority queue is not empty", uv.processInput("isEmpty"));
+        assertEquals("Error: priority queue is not empty", uv.processInput("isEmpty"));
     }
 
 

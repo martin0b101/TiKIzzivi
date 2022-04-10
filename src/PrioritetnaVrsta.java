@@ -88,7 +88,7 @@ public class PrioritetnaVrsta<Tip extends Comparable> implements Seznam<Tip> {
     @Override
     public Tip getFirst() {
         if(this.isEmpty())
-            throw new java.util.NoSuchElementException();
+            return null;
         return (Tip) heap[0];
     }
 

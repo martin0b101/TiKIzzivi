@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="faebd0bb-00cb-41f4-b737-a50eb9fec361" name="Default Changelist" comment="Izziv3Koncan">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiK/SeznamiUV.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiK/SeznamiUV.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiK/SeznamiUVTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiK/SeznamiUVTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiK/Sklad$Element.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiK/Sklad$Element.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TiK/Sklad.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TiK/Sklad.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/PrioritetnaVrsta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PrioritetnaVrsta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SeznamiUV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SeznamiUV.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SeznamiUVTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SeznamiUVTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sklad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sklad.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,6 +98,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SeznamiUVTest.testPushBasic" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="TiK" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="SeznamiUVTest" />
+      <option name="METHOD_NAME" value="testPushBasic" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SeznamiUVTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="TiK" />
       <shortenClasspath name="NONE" />
@@ -117,13 +131,15 @@
     </configuration>
     <list>
       <item itemvalue="Application.vaje02" />
-      <item itemvalue="TestNG.SeznamiUVTest" />
       <item itemvalue="JUnit.SeznamiUVTest.testCountOne" />
       <item itemvalue="JUnit.SeznamiUVTest" />
+      <item itemvalue="TestNG.SeznamiUVTest" />
+      <item itemvalue="JUnit.SeznamiUVTest.testPushBasic" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.SeznamiUVTest" />
+        <item itemvalue="JUnit.SeznamiUVTest.testPushBasic" />
         <item itemvalue="JUnit.SeznamiUVTest.testCountOne" />
         <item itemvalue="TestNG.SeznamiUVTest" />
         <item itemvalue="Application.vaje02" />
@@ -160,14 +176,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="Izziv3Koncan" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Sklad.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <pin-to-top-manager>
+      <pinned-members>
+        <PinnedItemInfo parentTag="BinarnoIskalnoDrevo" memberName="root" />
+      </pinned-members>
+    </pin-to-top-manager>
   </component>
 </project>
