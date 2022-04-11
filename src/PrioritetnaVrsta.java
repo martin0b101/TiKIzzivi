@@ -111,11 +111,39 @@ public class PrioritetnaVrsta<Tip extends Comparable> implements Seznam<Tip> {
 
     @Override
     public Tip remove(Tip e) {
+        if (isEmpty()){
+            return null;
+        }
+        if (getFirst().equals(e)){
+            Tip deleteFirst = getFirst();
+            removeFirst();
+            return deleteFirst;
+        }else{
+            for (int i = 0; i < end; i++) {
+                //najdem element
+                if (heap[i].equals(e)){
+                    Tip deleteThis = (Tip) heap[i];
+                    //ga zamenjam z zadnjim
+                    swap(i, --end);
+                    bubbleDown(i);
+                    return deleteThis;
+                }
+            }
+        }
         return null;
     }
 
     @Override
     public boolean exist(Tip e) {
+        if (isEmpty()){
+            return false;
+        }else {
+            for (int i = 0; i < end; i++) {
+                if (heap[i].equals(e)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 }

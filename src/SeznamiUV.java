@@ -6,6 +6,7 @@ public class SeznamiUV {
     HashMap<String, Seznam<String>> seznami;
     Seznam<String> seznam;
 
+    String weUseThisDataStructure;
 
     public SeznamiUV(){
         seznami = new HashMap<>();
@@ -22,7 +23,9 @@ public class SeznamiUV {
 
             case "use":
                 if (sc.hasNext()) {
-                    seznam = seznami.get(sc.next());
+                    String use = sc.next();
+                    weUseThisDataStructure = use;
+                    seznam = seznami.get(use);
                     if (null == seznam)
                         result = "Error: please specify a correct data structure type (pv, sk, bst)";
                 } else result = "Error: please specify a data structure type (pv, sk, bst)";
@@ -49,9 +52,12 @@ public class SeznamiUV {
                 if (!seznam.isEmpty())
                     result = seznam.removeFirst();
                 else
-                    if (seznami.containsKey("pv")){
+                    if (weUseThisDataStructure.equals("pv")){
                         result = "Error: priority queue is empty";
-                    }else {
+                    }else if(weUseThisDataStructure.equals("bst")){
+                        result = "Error: binary search tree is empty";
+                    }
+                    else {
                         result = "Error: stack is empty";
                     }
                 break;
@@ -64,44 +70,66 @@ public class SeznamiUV {
                 result = String.format("%d", seznam.depth());
                 break;
             case "get_first":
-
                 if (seznam.getFirst() == null) {
-                    if (seznami.containsKey("pv")){
+                    if (weUseThisDataStructure.equals("pv")){
                         result = "Error: priority queue is empty";
+                    }else if(weUseThisDataStructure.equals("bst")){
+                        result = "Error: binary search tree is empty";
                     }else {
                         result = "Error: stack is empty";
                     }
                     break;
                 } else{
+
                     result = seznam.getFirst();
+
                     break;
                 }
 
             case "isEmpty":
                 if (seznam.isEmpty())
-                    if (seznami.containsKey("pv")){
+                    if (weUseThisDataStructure.equals("pv")){
                         result = "Error: priority queue is empty";
+                    }else if(weUseThisDataStructure.equals("bst")){
+                        result = "Error: binary search tree is empty";
                     }else {
                         result = "Error: stack is empty";
                     }
                 else
-                if (seznami.containsKey("pv")){
+                if (weUseThisDataStructure.equals("pv")){
                     result = "Error: priority queue is not empty";
+                }else if(weUseThisDataStructure.equals("bst")){
+                    result = "Error: binary search tree is not empty";
                 }else {
                     result = "Error: stack is not empty";
                 }
                 break;
 
-            case "search":
-                if (sc.hasNext()) {
-                    result = String.format("%d", seznam.exist(sc.next()));
-                } else {
+            case "depth":
+                result = String.format("%d", seznam.depth());
+                break;
+            case "exist":
+                if (sc.hasNext()){
+                    if (seznam.exist(sc.next())){
+                        result = "Element exist";
+                    }else{
+                        result = "Element does not exist";
+                    }
+                }else{
                     result = "Error: please specify a string";
                 }
                 break;
-
-            case "depth":
-                result = String.format("%d", seznam.depth());
+            case "remove":
+                if (sc.hasNext()){
+                    String removeThis = sc.next();
+                    if (seznam.exist(removeThis)){
+                        result = seznam.remove(removeThis);
+                    }else{
+                        result = "Error: can not remove element that does not exist";
+                    }
+                }else{
+                    result = "Error: please specify a string";
+                }
                 break;
 
         }

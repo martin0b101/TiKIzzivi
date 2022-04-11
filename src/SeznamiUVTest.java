@@ -20,6 +20,10 @@ class SeznamiUVTest {
     public SeznamiUVTest(){
     }
 
+
+
+
+
     @Test
     public void testPushBasic(){
         //SeznamiUV uv = new SeznamiUV();
@@ -126,37 +130,32 @@ class SeznamiUVTest {
         assertEquals("OK", uv.processInput("add Test1"));
         assertEquals("Test1", uv.processInput("get_first Test1"));
         assertEquals("OK", uv.processInput("add Test2"));
-        assertEquals("Error: wrong element", uv.processInput("get_first Test1"));
-        assertEquals("Error: please specify a string", uv.processInput("get_first"));
-
     }
+
     @Test
     public void testIsTopEmpty(){
         System.out.println("testIsTopEmpty");
-        assertEquals("Error: stack is empty", uv.processInput("get_first Test1"));
+        assertEquals("Error: stack is empty", uv.processInput("get_first"));
     }
 
     @Test
-    public void testSearch(){
-        System.out.println("testSearch");
+    public void testStackExist(){
+        System.out.println("testStackExist");
+        assertEquals("Element does not exist", uv.processInput("exist Test1"));
         assertEquals("OK", uv.processInput("add Test1"));
-        assertEquals("0", uv.processInput("search Test1"));
+        assertEquals("Element exist", uv.processInput("exist Test1"));
+    }
+
+    @Test
+    public void testStackRemove(){
+        System.out.println("testStackRemove");
+        assertEquals("OK", uv.processInput("add Test1"));
         assertEquals("OK", uv.processInput("add Test2"));
-        assertEquals("1", uv.processInput("search Test1"));
         assertEquals("OK", uv.processInput("add Test3"));
-        assertEquals("2", uv.processInput("search Test1"));
-        assertEquals("Test3", uv.processInput("remove_first"));
-        assertEquals("Test2", uv.processInput("remove_first"));
-        assertEquals("Test1", uv.processInput("remove_first"));
-        assertEquals("-1", uv.processInput("search Test1"));
-        assertEquals("Error: please specify a string", uv.processInput("search"));
+        assertEquals("Test1", uv.processInput("remove Test1"));
+        assertEquals("Element does not exist", uv.processInput("exist Test1"));
     }
 
-
-
-    public void setUpPV(){
-        uv.processInput("use pv");
-    }
 
     //Test for pq
     @Test
@@ -224,6 +223,143 @@ class SeznamiUVTest {
         assertEquals("Error: priority queue is empty", uv.processInput("isEmpty"));
         assertEquals("OK", uv.processInput("add Test1"));
         assertEquals("Error: priority queue is not empty", uv.processInput("isEmpty"));
+    }
+
+    @Test
+    public void testPqExist(){
+        uv.processInput("use pv");
+        System.out.println("testPqExist");
+        assertEquals("Element does not exist", uv.processInput("exist Test1"));
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("Element exist", uv.processInput("exist Test1"));
+    }
+
+    @Test
+    public void testPqRemove(){
+        uv.processInput("ise pv");
+        System.out.println("testPqRemove");
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("OK", uv.processInput("add Test2"));
+        assertEquals("OK", uv.processInput("add Test3"));
+        assertEquals("Test2", uv.processInput("remove Test2"));
+        assertEquals("Element does not exist", uv.processInput("exist Test2"));
+    }
+
+    // binarno drevo
+    @Test
+    public void testBSTadd(){
+        uv.processInput("use bst");
+        System.out.println("testBSTadd");
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("Test1", uv.processInput("get_first"));
+    }
+
+    @Test
+    public void testBSTaddNothing(){
+        uv.processInput("use bst");
+        System.out.println("testBSTaddNothing");
+        assertEquals("Error: please specify a string", uv.processInput("add"));
+    }
+
+    @Test
+    public void testBSTremoveFirst(){
+        uv.processInput("use bst");
+        System.out.println("testBSTremoveFirst");
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("Test1", uv.processInput("remove_first"));
+    }
+
+    @Test
+    public void testBSTremoveOnEmpty(){
+        uv.processInput("use bst");
+        System.out.println("testBSTremoveOnEmpty");
+        assertEquals("Error: binary search tree is empty", uv.processInput("remove_first"));
+    }
+
+    @Test
+    public void testBSTgetFirst(){
+        uv.processInput("use bst");
+        System.out.println("testBSTgetFirst");
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("OK", uv.processInput("add Test2"));
+        assertEquals("Test1", uv.processInput("get_first"));
+    }
+
+    @Test
+    public void testBSTgetFirstOnEmpty(){
+        uv.processInput("use bst");
+        System.out.println("testBSTgetFirstOnEmpty");
+        assertEquals("Error: binary search tree is empty", uv.processInput("get_first"));
+    }
+
+    @Test
+    public void testBSTsize(){
+        uv.processInput("use bst");
+        System.out.println("testBSTsize");
+        assertEquals("0", uv.processInput("size"));
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("1", uv.processInput("size"));
+        assertEquals("OK", uv.processInput("add Test2"));
+        assertEquals("2", uv.processInput("size"));
+        assertEquals("OK", uv.processInput("add Test3"));
+        assertEquals("3", uv.processInput("size"));
+        assertEquals("OK", uv.processInput("add Test0"));
+        assertEquals("3", uv.processInput("size"));
+    }
+
+    @Test
+    public void testBSTisEmpty(){
+        uv.processInput("use bst");
+        System.out.println("testBSTisEmpty");
+        assertEquals("Error: binary search tree is empty", uv.processInput("isEmpty"));
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("Error: binary search tree is not empty", uv.processInput("isEmpty"));
+    }
+
+    //remove
+    @Test
+    public void testBSTremove(){
+        uv.processInput("use bst");
+        System.out.println("testBSTremove");
+        assertEquals("Error: can not remove element that does not exist", uv.processInput("remove Test1"));
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("Test1", uv.processInput("remove Test1"));
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("OK", uv.processInput("add Test2"));
+        assertEquals("OK", uv.processInput("add Test3"));
+        assertEquals("OK", uv.processInput("add Test0"));
+        assertEquals("Test2", uv.processInput("remove Test2"));
+        assertEquals("Error: can not remove element that does not exist", uv.processInput("remove Test2"));
+    }
+
+    @Test
+    public void testBSTremoveOnEmptySelected(){
+        uv.processInput("use bst");
+        System.out.println("testBSTremoveOnEmpty");
+        assertEquals("Error: please specify a string", uv.processInput("remove"));
+    }
+
+
+    //exist
+    @Test
+    public void testBSTexist(){
+        uv.processInput("use bst");
+        System.out.println("testBSTexist");
+        assertEquals("Element does not exist", uv.processInput("exist Test1"));
+        assertEquals("OK", uv.processInput("add Test1"));
+        assertEquals("Element exist", uv.processInput("exist Test1"));
+    }
+
+
+    //use testi
+    @Test
+    public void testUseWrongDataSt(){
+        assertEquals("Error: please specify a correct data structure type (pv, sk, bst)", uv.processInput("use ps"));
+    }
+
+    @Test
+    public void testUseNothing(){
+        assertEquals("Error: please specify a data structure type (pv, sk, bst)", uv.processInput("use"));
     }
 
 

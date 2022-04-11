@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class Sklad<Tip extends Comparable> implements Seznam<Tip> {
@@ -34,10 +35,49 @@ public class Sklad<Tip extends Comparable> implements Seznam<Tip> {
     {
         return (null == vrh);
     }
+/*
+    @Override
+    public Tip remove(Tip e) {
+        Element<Tip> temp = vrh;
+        ArrayList<Tip> saveHere = new ArrayList<>();
+        Tip toRemove = null;
+        while (null != temp){
+            if (!temp.vrednost.equals(e)){
+                saveHere.add(temp.vrednost);
+            }else {
+                toRemove = temp.vrednost;
+            }
+            temp = temp.vezava;
+            pop();
+        }
+        for (Tip t:saveHere) {
+            push(t);
+        }
+        return toRemove;
+    }*/
 
     @Override
     public Tip remove(Tip e) {
-        return null;
+        if (vrh.vrednost == null){
+            return null;
+        }
+        if (exist(e)){
+            if (vrh.vrednost.equals(e)){
+                removeFirst();
+            }else{
+                Element<Tip> temp = vrh;
+                while (temp != null){
+                    if (temp.vezava.vrednost.equals(e)){
+                        Tip returnThis = temp.vezava.vrednost;
+                        temp.vezava = temp.vezava.vezava;
+                        return returnThis;
+                    }
+                    temp = temp.vezava;
+                }
+            }
+            return e;
+        }
+        return e;
     }
 
     @Override
